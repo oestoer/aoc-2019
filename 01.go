@@ -3,34 +3,47 @@ package main
 import (
 	"fmt"
 	"math"
+	"os"
 )
 
-// Day1A returns the solution for the first part of 'The Tyranny of the Rocket Equation'
-func Day1A(moduleMasses []int, debug bool) int {
-	var fuelReq []int
+// Day1 returns the solutions for the 'The Tyranny of the Rocket Equation'
+func Day1() {
+	inputs, err := readInput(1)
+	checkErr(err, "unable to read file")
+
+	moduleMasses, err := inputToInt(err)(inputs)
+	checkErr(err, "unable to convert")
+
+	fmt.Printf("\tA: fuel requirement: %v\n", day1A(moduleMasses))
+	fmt.Printf("\tB: fuel requirement: %v\n", day1B(moduleMasses))
+}
+
+// day1A returns the solution for the first part of 'The Tyranny of the Rocket Equation'
+func day1A(moduleMasses []int) int {
+	fuelReq := make([]int, len(moduleMasses))
 	var sum int
 
-	for i := 0; i < len(moduleMasses); i++ {
-		fuelReq[i] = fuel(moduleMasses[i])
+	for i, m := range moduleMasses {
+		fuelReq[i] = fuel(m)
 		sum += fuelReq[i]
 	}
-	if debug {
+	if os.Getenv("DEBUG") == "1" {
 		fmt.Println(sum, fuelReq)
 	}
 
 	return sum
 }
 
-// Day1B returns the solution for the first part of 'The Tyranny of the Rocket Equation'
-func Day1B(moduleMasses []int, debug bool) int {
-	var fuelReq []int
+// day1B returns the solution for the first part of 'The Tyranny of the Rocket Equation'
+func day1B(moduleMasses []int) int {
+	fuelReq := make([]int, len(moduleMasses))
 	var sum int
 
-	for i := 0; i < len(moduleMasses); i++ {
-		fuelReq[i] = fuelWithAddedFuel(moduleMasses[i])
+	for i, m := range moduleMasses {
+		fuelReq[i] = fuelWithAddedFuel(m)
 		sum += fuelReq[i]
 	}
-	if debug {
+	if os.Getenv("DEBUG") == "1" {
 		fmt.Println(sum, fuelReq)
 	}
 

@@ -1,14 +1,43 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
 
 func main() {
-	debug := false
+	fmt.Println()
+	if len(os.Args) < 2 || os.Args[1] == "help" || os.Args[1] == "-h" {
+		fmt.Println("Usage:\taoc-2019 COMMAND")
+		fmt.Println()
+		fmt.Println("Advent of Code 2019 🎄 🕯️ 📅")
+		fmt.Println()
+		fmt.Println("Commands:")
+		fmt.Println("  all\t\tList all solutions")
+		fmt.Println("  day\t\tList solution for given day, where 'day' is a number between 1-25")
+		fmt.Println("  help\t\tShow this help")
+		os.Exit(0)
+	}
 
-	fmt.Println("Day1:")
+	days := map[uint8]func(){
+		1: Day1,
+		2: Day2,
+	}
+	if os.Args[1] == "all" {
+		for i := 1; i <= len(days); i++ {
+			fmt.Printf("📅 Day %d:\n", i)
+			days[uint8(i)]()
+			fmt.Println("________________________________________________________________________________")
+			fmt.Println()
+		}
+		os.Exit(0)
+	}
 
-	var moduleMasses = []int{94794, 58062, 112067, 139512, 147400, 99825, 142617, 107263, 86294, 97000, 140204, 72573, 134981, 111385, 88303, 79387, 129111, 122976, 130685, 75100, 146566, 73191, 107641, 109940, 65518, 102028, 57370, 144556, 64017, 64384, 145114, 115853, 87939, 90791, 133443, 139050, 140657, 85738, 133749, 92466, 142918, 96679, 125035, 127629, 87906, 104478, 105147, 121741, 70312, 73732, 60838, 82292, 102931, 103000, 135903, 78678, 86314, 50772, 115673, 106179, 60615, 105152, 76550, 140591, 120916, 62094, 111273, 63542, 102974, 78837, 94840, 89126, 63150, 52503, 108530, 101458, 59660, 116913, 66440, 83306, 50693, 58377, 62005, 130663, 124304, 79726, 63001, 73380, 64395, 124277, 69742, 63465, 93172, 142068, 120081, 119872, 52801, 100693, 79229, 90365}
-	fmt.Printf("\tfuel requirement: %v\n", Day1A(moduleMasses, debug))
-	fmt.Printf("\tfuel requirement: %v\n", Day1B(moduleMasses, debug))
-	fmt.Println("")
+	d, err := strconv.Atoi(os.Args[1])
+	checkErr(err, "not a number")
+	day := uint8(d)
+
+	fmt.Printf("📅 Day %d:\n", day)
+	days[day]()
 }
