@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+aoc-2019
 
 # Test binary, build with `go test -c`
 *.test

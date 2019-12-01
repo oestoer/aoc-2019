@@ -127,13 +127,12 @@ func Day1A(debug bool) int {
 
 // Day1B returns the solution for the first part of 'The Tyranny of the Rocket Equation'
 func Day1B(debug bool) int {
-	var fuelReq [100][2]int
+	var fuelReq [100]int
 	var sum int
 
 	for i := 0; i < len(moduleMasses); i++ {
-		fuelReq[i][0] = fuel(moduleMasses[i])
-		fuelReq[i][1] = fuelForFuel(fuelReq[i][0])
-		sum += fuelReq[i][0] + fuelReq[i][1]
+		fuelReq[i] = fuelWithAddedFuel(moduleMasses[i])
+		sum += fuelReq[i]
 	}
 	if debug {
 		fmt.Println(sum, fuelReq)
@@ -142,16 +141,16 @@ func Day1B(debug bool) int {
 	return sum
 }
 
-func fuel(i int) int {
-	return int(math.Floor(float64(i/3))) - 2
+func fuel(m int) int {
+	return int(math.Floor(float64(m/3))) - 2
 }
 
-func fuelForFuel(f int) int {
+func fuelWithAddedFuel(f int) int {
 	r := fuel(f)
 	if r <= 0 {
 		return 0
 	}
-	r += fuelForFuel(r)
+	r += fuelWithAddedFuel(r)
 
 	return r
 }
