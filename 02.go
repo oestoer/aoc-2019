@@ -8,7 +8,7 @@ func Day2() {
 	inputs, err := readInput(2, ",")
 	checkErr(err, "unable to read file")
 
-	gravityAssist, err := inputToInt(err)(inputs)
+	gravityAssist, err := inputToInt(inputs)
 	checkErr(err, "unable to convert")
 
 	gravityAssist[1] = 12
@@ -30,7 +30,7 @@ func intcodeComputer(input []int) ([]int, error) {
 		case 99:
 			return input, nil
 		default:
-			return nil, fmt.Errorf("unknown operation %v", input[i])
+			return nil, fmt.Errorf("unknown instruction %v", input[i])
 		}
 
 	}

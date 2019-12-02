@@ -16,17 +16,16 @@ func checkErr(err error, msg string) {
 }
 
 // inputToInt converts a slice of string containing numbers to a slice of int
-func inputToInt(err error) func(inputs []string) ([]int, error) {
-	return func(inputs []string) ([]int, error) {
-		c := make([]int, len(inputs))
-		for i, v := range inputs {
-			c[i], err = strconv.Atoi(v)
-			if err != nil {
-				return c, err
-			}
+func inputToInt(inputs []string) ([]int, error) {
+	c := make([]int, len(inputs))
+	for i, v := range inputs {
+		var err error
+		c[i], err = strconv.Atoi(v)
+		if err != nil {
+			return c, err
 		}
-		return c, nil
 	}
+	return c, nil
 }
 
 // readInput gets the content of an input file from the `inputs` directory for a given day

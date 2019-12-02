@@ -11,11 +11,11 @@ func Day1() {
 	inputs, err := readInput(1, "\n")
 	checkErr(err, "unable to read file")
 
-	moduleMasses, err := inputToInt(err)(inputs)
+	moduleMasses, err := inputToInt(inputs)
 	checkErr(err, "unable to convert")
 
-	fmt.Printf("\tA: fuel requirement: %v\n", day1A(moduleMasses))
-	fmt.Printf("\tB: fuel requirement: %v\n", day1B(moduleMasses))
+	fmt.Printf("\tA: fuel requirement:\t%v\n", day1A(moduleMasses))
+	fmt.Printf("\tB: fuel requirement:\t%v\n", day1B(moduleMasses))
 }
 
 // day1A returns the solution for the first part of 'The Tyranny of the Rocket Equation'
