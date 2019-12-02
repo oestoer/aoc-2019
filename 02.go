@@ -16,8 +16,31 @@ func Day2() {
 	result, err := intcodeComputer(gravityAssist)
 	checkErr(err, "1202")
 
-	fmt.Println("\t1202 program alarm: ", result[0])
+	fmt.Println("\t1202 program alarm:\t", result[0])
 
+	gravityAssist, err = inputToInt(inputs)
+	checkErr(err, "unable to convert")
+	fmt.Println("\t19690720 output:\t", day2B(inputs))
+
+}
+
+func day2B (inputs []string) int {
+	gravityAssist, _ := inputToInt(inputs)
+	for i := 0; i <= 99; i++ {
+		for j := 0; j <= 99; j++ {
+			gravityAssist[1] = i
+			gravityAssist[2] = j
+
+			result, err := intcodeComputer(gravityAssist)
+			checkErr(err, "failed input combination")
+
+			if result[0] == 19690720 {
+				return 100 * i + j
+			}
+			gravityAssist, _ = inputToInt(inputs)
+		}
+	}
+	return 0
 }
 
 func intcodeComputer(input []int) ([]int, error) {
