@@ -30,12 +30,12 @@ func inputToInt(err error) func(inputs []string) ([]int, error) {
 }
 
 // readInput gets the content of an input file from the `inputs` directory for a given day
-func readInput(day uint8) ([]string, error) {
+func readInput(day uint8, delimiter string) ([]string, error) {
 	file, err := ioutil.ReadFile(fmt.Sprintf("./inputs/day%d.txt", day))
 	if err != nil {
 		return nil, err
 	}
 
-	s := strings.Split(string(file), "\n")
+	s := strings.Split(string(file), delimiter)
 	return s[:len(s)-1], nil
 }

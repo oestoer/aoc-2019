@@ -8,7 +8,7 @@ import (
 
 // Day1 returns the solutions for the 'The Tyranny of the Rocket Equation'
 func Day1() {
-	inputs, err := readInput(1)
+	inputs, err := readInput(1, "\n")
 	checkErr(err, "unable to read file")
 
 	moduleMasses, err := inputToInt(err)(inputs)
