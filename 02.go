@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// Day2 returns the solutions for the 'Program Alarm'
 func Day2() {
 	inputs, err := readInput(2, ",")
 	checkErr(err, "unable to read file")
@@ -24,7 +25,7 @@ func Day2() {
 
 }
 
-func day2B (inputs []string) int {
+func day2B(inputs []string) int {
 	gravityAssist, _ := inputToInt(inputs)
 	for i := 0; i <= 99; i++ {
 		for j := 0; j <= 99; j++ {
@@ -35,7 +36,7 @@ func day2B (inputs []string) int {
 			checkErr(err, "failed input combination")
 
 			if result[0] == 19690720 {
-				return 100 * i + j
+				return 100*i + j
 			}
 			gravityAssist, _ = inputToInt(inputs)
 		}

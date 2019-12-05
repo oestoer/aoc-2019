@@ -23,6 +23,7 @@ func main() {
 	days := map[uint8]func(){
 		1: Day1,
 		2: Day2,
+		3: Day3,
 	}
 	if os.Args[1] == "all" {
 		for i := 1; i <= len(days); i++ {
